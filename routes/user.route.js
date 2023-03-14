@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { testFun } = require("../controls/user.control");
+const { deleteUser } = require("../controls/user.control");
+const verifyToken = require("../middleware/verifyToken");
 
-router.get("/test", testFun);
+router.delete("/:id", verifyToken, deleteUser);
 
 module.exports = router;

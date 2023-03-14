@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema(
   {
-    gigId: { type: mongoose.Types.ObjectId, ref: "Gig", required: true },
+    gigId: { type: String, required: true },
     img: { type: String, required: true },
     title: { type: String, required: true },
     price: { type: Number, required: true },
