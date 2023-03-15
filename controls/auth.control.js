@@ -51,8 +51,7 @@ const login = async (req, res) => {
 };
 
 const logout = async (req, res) => {
-  try {
-  } catch (error) {}
+  res.cookie("token", "").json("ok");
 };
 
 module.exports = {
