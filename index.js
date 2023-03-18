@@ -8,6 +8,8 @@ const messageRoute = require("./routes/message.route");
 const orderRoute = require("./routes/order.route");
 const reviewRoute = require("./routes/review.route");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
+
 require("dotenv").config();
 
 const app = express();
@@ -19,6 +21,12 @@ mongoose
   .then(() => console.log("mongodb is conected!"))
   .catch(() => console.log("mongodb is filed!"));
 
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:5173",
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 

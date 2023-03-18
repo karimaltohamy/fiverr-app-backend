@@ -3,17 +3,22 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const register = async (req, res) => {
-  const { username, email, password, country } = req.body;
+  const { username, email, password, desc, country, img, phone, isSeller } =
+    req.body;
   try {
     const findUser = await User.findOne({ username });
     if (findUser) return res.status(400).send("This user exists");
 
-    const hassPass = bcrypt.hashSync(password, 10);
+    const hashPass = bcrypt.hashSync(password, 10);
     const user = await User.create({
       username,
       email,
-      password: hassPass,
+      password: hashPass,
+      desc,
       country,
+      img,
+      phone,
+      isSeller,
     });
 
     return res.status(201).json(user);
