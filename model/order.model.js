@@ -11,6 +11,7 @@ const orderSchema = new mongoose.Schema(
     isCompleted: { type: Boolean, default: false },
     payment_intent: { type: String, required: true },
   },
+
   {
     timestamps: true,
   }

@@ -15,18 +15,19 @@ const conversationSchema = new mongoose.Schema(
       required: true,
     },
     readBySeller: {
-      type: String,
+      type: Boolean,
       required: true,
     },
     readByBuyer: {
-      type: String,
+      type: Boolean,
       required: true,
     },
     lastMessage: {
       type: String,
-      required: true,
+      required: false,
     },
   },
+
   {
     timestamps: true,
   }
