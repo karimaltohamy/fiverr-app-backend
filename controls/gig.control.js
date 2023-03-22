@@ -1,5 +1,6 @@
 const Gig = require("../model/gig.model");
 
+
 const createGig = async (req, res) => {
   if (!req.userId) return res.status(400).send("you must be authantication");
 
@@ -7,21 +8,23 @@ const createGig = async (req, res) => {
     const gigDoc = await (
       await Gig.create({ ...req.body, userId: req.userId })
     ).populate("userId");
-    res.status(201).json(gigDoc);
-  } catch (error) {}
+    return res.status(201).json(gigDoc);
+  } catch (error) {
+    return res.status(401).json(error);
+  }
 };
 
 const deleteGig = async (req, res) => {
   const { id } = req.params;
   const findGig = await Gig.findById(id);
-  if (req.userId !== findGig.userId._id)
+  if (req.userId !== findGig.userId._id.toString())
     return res.status(401).send("you can delete just your gig");
 
   try {
     await Gig.findByIdAndRemove(id);
-    res.status(201).send("It has been deleted");
+    return res.status(201).send("It has been deleted");
   } catch (error) {
-    res.status(401).json(error);
+   return res.status(401).json(error);
   }
 };
 
@@ -29,9 +32,9 @@ const gitGig = async (req, res) => {
   const { id } = req.params;
   try {
     const findGig = await Gig.findById(id).populate("userId");
-    res.status(201).json(findGig);
+    return res.status(201).json(findGig);
   } catch (error) {
-    res.status(401).json(error);
+    return res.status(401).json(error);
   }
 };
 
@@ -44,7 +47,7 @@ const getGigs = async (req, res) => {
     ...((q.min || q.max) && {
       price: { ...(q.min && { $gt: q.min }), ...(q.max && { $lt: q.max }) },
     }),
-    ...(q.sarch && { title: { $regex: q.search, $options: "i" } }),
+    ...(q.search && { title: { $regex: q.search, $options: "i" } }),
   };
 
   try {
@@ -52,9 +55,9 @@ const getGigs = async (req, res) => {
       .sort({ [q.sort]: -1 })
       .populate("userId");
 
-    res.status(201).json(gigs);
+    return res.status(201).json(gigs);
   } catch (error) {
-    res.status(401).json(error);
+    return res.status(401).json(error);
   }
 };
 

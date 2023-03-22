@@ -9,7 +9,7 @@ const {
 } = require("../controls/gig.control");
 
 router.post("/", verifyToken, createGig);
-router.get("/:id", verifyToken, deleteGig);
+router.delete("/:id", verifyToken, deleteGig);
 router.get("/single/:id", gitGig);
 router.get("/", getGigs);
 

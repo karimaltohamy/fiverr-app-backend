@@ -20,7 +20,7 @@ const getConversations = async (req, res) => {
   try {
     const conversations = await Conversation.find(
       req.isSeller ? { sellerId: req.userId } : { buyerId: req.userId }
-    );
+    ).sort({createdAt: -1})
     return res.status(201).json(conversations);
   } catch (error) {
     return res.status(400).send(error);
