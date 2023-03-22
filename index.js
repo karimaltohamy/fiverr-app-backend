@@ -9,14 +9,14 @@ const orderRoute = require("./routes/order.route");
 const reviewRoute = require("./routes/review.route");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-
 require("dotenv").config();
 
 const app = express();
+const port = process.env.PORT || 8000
 
 mongoose
   .connect(
-    "mongodb+srv://karim_altohamy:KNq0a0tMFfGBiNzz@cluster0.tgw2gul.mongodb.net/?retryWrites=true&w=majority"
+    process.env.MONGODB_URL
   )
   .then(() => console.log("mongodb is conected!"))
   .catch(() => console.log("mongodb is filed!"));
@@ -43,7 +43,7 @@ app.get("/", (req, res) => {
   res.send("index page");
 });
 
-app.listen(8000, () => {
+app.listen(port, () => {
   console.log("backend sever is runing!");
 });
 
