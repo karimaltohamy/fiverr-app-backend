@@ -49,7 +49,8 @@ const login = async (req, res) => {
     res
       .status(200)
       .cookie("token", token, {
-        secure: true
+        secure: true,
+        httpOnly: true
       })
       .json({...info, token});
   } catch (error) {
