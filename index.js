@@ -24,7 +24,7 @@ mongoose
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:5173",
+    origin: "https://main--resplendent-kheer-ad1de7.netlify.app",
   })
 );
 
