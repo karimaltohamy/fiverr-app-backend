@@ -49,7 +49,7 @@ const login = async (req, res) => {
     res
       .status(200)
       .cookie("token", token)
-      .json(info);
+      .json({...info, token});
   } catch (error) {
     return res.status(404).json(error);
   }
