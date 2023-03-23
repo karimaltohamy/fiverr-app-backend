@@ -24,7 +24,7 @@ mongoose
 app.use(
   cors({
     credentials: true,
-    origin: "https://prismatic-squirrel-2eef04.netlify.app",
+    origin: "https://main--resplendent-kheer-ad1de7.netlify.app",
   })
 );
 
@@ -43,7 +43,7 @@ app.get("/", (req, res) => {
   res.send("index page");
 });
 
-app.listen(port, () => {
+app.listen(8000, () => {
   console.log("backend sever is runing!");
 });
 
