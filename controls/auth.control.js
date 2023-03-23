@@ -48,9 +48,7 @@ const login = async (req, res) => {
 
     res
       .status(200)
-      .cookie("token", token, {
-        httpOnly: true,
-      })
+      .cookie("token", token)
       .json(info);
   } catch (error) {
     return res.status(404).json(error);
