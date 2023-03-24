@@ -52,7 +52,8 @@ const login = async (req, res) => {
         secure: true,
         sameSite: "none",
         domain: "/",
-        path: "/"
+        path: "/",
+        httpOnly: false
       })
       .json({...info, token});
   } catch (error) {
