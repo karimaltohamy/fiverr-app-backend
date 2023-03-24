@@ -14,6 +14,7 @@ require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 8000
 
+
 mongoose
   .connect(
     process.env.MONGODB_URL
@@ -24,7 +25,7 @@ mongoose
 app.use(
   cors({
     credentials: true,
-    origin: ["https://main--resplendent-kheer-ad1de7.netlify.app", "http://localhost:5173"],
+    origin: ["https://resplendent-kheer-ad1de7.netlify.app", "http://localhost:5173"],
   })
 );
 
