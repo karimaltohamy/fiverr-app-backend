@@ -39,6 +39,8 @@ app.use("/api/messages", messageRoute);
 app.use("/api/reviews", reviewRoute);
 app.use("/api/orders", orderRoute);
 
+app.set("trust proxy", 1);
+
 app.get("/", (req, res) => {
   res.send("index page");
 });
